@@ -64,9 +64,9 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'xiachufang.pipelines.XiachufangPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'xiachufang.pipelines.MongoPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -94,3 +94,12 @@ CATEGORY_PAGE_LIMIT = 3
 FEED_URI = './recipes.jl'
 FEED_FORMAT = 'jsonlines'
 FEED_EXPORT_ENCODING = 'utf-8'
+
+MONGO_URI = 'mongodb://localhost'
+MONGO_DATABASE = 'recipes'
+
+import json
+with open('instapush.json') as f:
+    instapush_config = json.load(f)
+INSTAPUSH_APPID=instapush_config['appid']
+INSTAPUSH_SECRET=instapush_config['secret']
