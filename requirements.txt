@@ -3,8 +3,9 @@ asn1crypto==0.23.0
 astroid==1.5.3
 attrs==17.2.0
 Automat==0.6.0
-certifi==2016.2.28
+certifi==2017.7.27.1
 cffi==1.11.2
+chardet==3.0.4
 constantly==15.1.0
 cryptography==2.1.1
 cssselect==1.0.1
@@ -12,6 +13,7 @@ decorator==4.1.2
 hyperlink==17.3.1
 idna==2.6
 incremental==17.5.0
+instapush==0.1.2
 ipython==6.2.1
 ipython-genutils==0.2.0
 isort==4.2.15
@@ -35,12 +37,14 @@ pymongo==3.5.1
 pyOpenSSL==17.3.0
 pyreadline==2.1
 queuelib==1.4.2
+requests==2.18.4
 Scrapy==1.4.0
 service-identity==17.0.0
 simplegeneric==0.8.1
 six==1.11.0
 traitlets==4.3.2
 Twisted==17.9.0
+urllib3==1.22
 w3lib==1.18.0
 wcwidth==0.1.7
 wrapt==1.10.11
