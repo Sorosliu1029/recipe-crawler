@@ -91,9 +91,14 @@ ITEM_PIPELINES = {
 
 # customed settings
 CATEGORY_PAGE_LIMIT = 3
-FEED_URI = './recipes.jl'
-FEED_FORMAT = 'jsonlines'
-FEED_EXPORT_ENCODING = 'utf-8'
+
+try:
+    if not ITEM_PIPELINES:
+        FEED_URI = './recipes.jl'
+        FEED_FORMAT = 'jsonlines'
+        FEED_EXPORT_ENCODING = 'utf-8'
+except NameError:
+    pass
 
 MONGO_URI = 'mongodb://localhost'
 MONGO_DATABASE = 'recipes'
