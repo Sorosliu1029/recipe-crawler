@@ -103,8 +103,10 @@ except NameError:
 MONGO_URI = 'mongodb://localhost'
 MONGO_DATABASE = 'recipes'
 
-import json
-with open('instapush.json') as f:
-    instapush_config = json.load(f)
-INSTAPUSH_APPID=instapush_config['appid']
-INSTAPUSH_SECRET=instapush_config['secret']
+ENABLE_INSTAPUSH = True
+if ENABLE_INSTAPUSH:
+    import json
+    with open('instapush.json') as f:
+        instapush_config = json.load(f)
+    INSTAPUSH_APPID=instapush_config['appid']
+    INSTAPUSH_SECRET=instapush_config['secret']
