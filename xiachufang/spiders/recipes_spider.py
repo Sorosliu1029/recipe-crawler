@@ -31,7 +31,9 @@ class RecipesSpider(scrapy.Spider):
                 yield response.follow(recipe_link.extract_first(), callback=self.parse_recipe)
 
     def parse_recipe(self, response):
+        xiachufang_id = int(response.url.split('/')[-2])
         name = response.css('h1.page-title::text').extract_first().strip()
+        cover_image_link = response.css('div.recipe-show').css('div.cover img').xpath('@src').extract_first()
         rating = response.css('.score')[0]
         rating_value = float(rating.css('.number::text').extract_first())
         best_rating = None
@@ -46,10 +48,16 @@ class RecipesSpider(scrapy.Spider):
         categories = response.css('.recipe-cats').css('a::text').extract()
         recipe_list = list(map(lambda s: s.strip(), response.css('.recipe-menu-name::text').extract()))
         ingredients = list(map(extract_ingredient, response.css('.ings').css('tr')))
-        instructions = response.css('.steps').css('ol li p::text').extract()
+        instructions = []
+        instruction_image_links = []
+        for step in response.css('div.steps').css('ol li'):
+            instructions.append('\n'.join(step.css('p::text').extract()))
+            instruction_image_links.append(step.css('img::attr(src)').extract_first())
         tips = response.css('.tip::text').extract_first()
         yield Recipe({
+            "xiachufang_id": xiachufang_id,
             "name": name,
+            "cover_image_link": cover_image_link,
             "rating_value": rating_value,
             "best_rating": best_rating,
             "rating_count": rating_count,
@@ -59,6 +67,7 @@ class RecipesSpider(scrapy.Spider):
             "recipe_list": recipe_list,
             "ingredients": ingredients,
             "instructions": instructions,
+            "instruction_image_links": instruction_image_links,
             "tips": tips.strip() if tips else tips 
         })
 
