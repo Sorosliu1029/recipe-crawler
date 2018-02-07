@@ -103,7 +103,7 @@ except NameError:
 MONGO_URI = 'mongodb://localhost'
 MONGO_DATABASE = 'recipes'
 
-ENABLE_INSTAPUSH = True
+ENABLE_INSTAPUSH = False
 if ENABLE_INSTAPUSH:
     import json
     with open('instapush.json') as f:

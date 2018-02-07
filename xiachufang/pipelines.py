@@ -6,8 +6,6 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 import pymongo
-from instapush import App
-
 
 class MongoPipeline(object):
     collection_name = "recipe_item"
@@ -17,6 +15,7 @@ class MongoPipeline(object):
         self.mongo_db = mongo_db
         self.instapush_app = None
         if instapush_appid and instapush_secret:
+            from instapush import App
             self.instapush_app = App(appid=instapush_appid, secret=instapush_secret)
 
     @classmethod
